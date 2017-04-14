@@ -7,11 +7,7 @@ Repository containing all on-board flight software running on various embedded s
 This repo utilizes the "Athena" build system. To set this up, after initially cloning this repo, cd into the repo directory and run:
 
 ```bash
-git submodule init
+git submodule update --init --recursive
 ```
-
-and
-
-```bash
-git submodule update
-```
+This may take a while, but it will recursively fetch all required git 
+submodules.
