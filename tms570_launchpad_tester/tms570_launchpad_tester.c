@@ -1,6 +1,6 @@
 /*
 	This is the main user software application
-	In this case, we have below the code necessary to toggle a set of LEDs on an RM48L950-based autopilot PCB at 20 Hz.
+	In this case, we have below the code necessary to toggle a set of LEDs on an TMS570-based dev board PCB at 20 Hz.
 
 	(c) Abhimanyu Ghosh, 2017
  */
@@ -44,12 +44,12 @@ int main()
       board_led_on(LED1);
       board_led_off(LED2);
 
-      cpu_sw_delay(50U);  // Invoke a simple software busy-wait routine to delay approximately 50 milliseconds
+      cpu_sw_delay(100U);  // Invoke a simple software busy-wait routine to delay approximately 50 milliseconds
 
       board_led_off(LED1);
       board_led_on(LED2);
 
-      cpu_sw_delay(50U);
+      cpu_sw_delay(100U);
 
       ++i; // Increment i for the next test iteration...
     }
