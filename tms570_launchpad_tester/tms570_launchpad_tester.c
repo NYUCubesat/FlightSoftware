@@ -7,8 +7,11 @@
 
 #include "cpu_hal_interface.h"
 #include "board_led.h"
+#include "imu.h"
 
 #include "foo.h"
+
+static volatile  imu_raw_data_struct imu_data;
 
 int main()
 {
@@ -20,6 +23,27 @@ int main()
     Initialize the GPIO (General-Purpose I/O) subsystem pins that are connected to the LEDs on the board:
    */
   board_led_init();
+  canInit();
+  i2cInit();
+
+  uint8_t msg[8];
+  uint8_t msg2[8];
+  uint8_t msg3[8];
+  uint8_t msg4[8];
+
+  msg[0] = 0U;
+  msg[1] = 0U;
+  msg[2] = 0U;
+  msg[3] = 0U;
+  msg[4] = 0U;
+  msg[5] = 0U;
+  msg[6] = 0U;
+  msg[7] = 0U;
+
+  imu_hal_init(); // Initialize IMU I2C bus
+  initialize_imu(SCALE_2G, SCALE_250_DPS, SCALE_1POINT3_GAUSS, &imu_data); // Set up IMU registers
+
+  canTransmit(canREG1, canMESSAGE_BOX1, msg);
 
   int i = 0;
 
@@ -41,6 +65,42 @@ int main()
     }
     else
     {
+      get_raw_imu_data(&imu_data);
+
+      msg[0] += 1U;
+
+      msg2[0] = imu_data.accel_data[0] & 0xFF00 >> 8;
+      msg2[1] = imu_data.accel_data[0] * 0xFF;
+
+      msg2[2] = imu_data.accel_data[1] & 0xFF00 >> 8;
+      msg2[3] = imu_data.accel_data[1] * 0xFF;
+
+      msg2[4] = imu_data.accel_data[2] & 0xFF00 >> 8;
+      msg2[5] = imu_data.accel_data[2] * 0xFF;
+
+      msg3[0] = imu_data.gyro_data[0] & 0xFF00 >> 8;
+      msg3[1] = imu_data.gyro_data[0] * 0xFF;
+
+      msg3[2] = imu_data.gyro_data[1] & 0xFF00 >> 8;
+      msg3[3] = imu_data.gyro_data[1] * 0xFF;
+
+      msg3[4] = imu_data.gyro_data[2] & 0xFF00 >> 8;
+      msg3[5] = imu_data.gyro_data[2] * 0xFF;
+
+      msg4[0] = imu_data.magnetometer_data[0] & 0xFF00 >> 8;
+      msg4[1] = imu_data.magnetometer_data[0] * 0xFF;
+
+      msg4[2] = imu_data.magnetometer_data[1] & 0xFF00 >> 8;
+      msg4[3] = imu_data.magnetometer_data[1] * 0xFF;
+
+      msg4[4] = imu_data.magnetometer_data[2] & 0xFF00 >> 8;
+      msg4[5] = imu_data.magnetometer_data[2] * 0xFF;
+
+      canTransmit(canREG1, canMESSAGE_BOX1, msg);
+      canTransmit(canREG1, canMESSAGE_BOX2, msg2);
+      canTransmit(canREG1, canMESSAGE_BOX3, msg3);
+      canTransmit(canREG1, canMESSAGE_BOX4, msg4);
+      
       board_led_on(LED1);
       board_led_off(LED2);
 

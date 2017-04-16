@@ -1,0 +1,32 @@
+user_source/hal_interface/cpu_hal_interface.o: \
+ user_source/hal_interface/cpu_hal_interface.c \
+ user_include/hal_interface/cpu_hal_interface.h \
+ user_include/hal_interface/hal_common_includes.h \
+ ../Athena/board/hercules_tms570LS12x/inc/sys_common.h \
+ ../Athena/board/hercules_tms570LS12x/inc/hal_stdtypes.h \
+ ../Athena/board/hercules_tms570LS12x/inc/sys_core.h \
+ ../Athena/board/hercules_tms570LS12x/inc/sys_common.h \
+ ../Athena/board/hercules_tms570LS12x/inc/system.h \
+ ../Athena/board/hercules_tms570LS12x/inc/reg_system.h \
+ ../Athena/board/hercules_tms570LS12x/inc/reg_gio.h \
+ ../Athena/board/hercules_tms570LS12x/inc/reg_flash.h \
+ ../Athena/board/hercules_tms570LS12x/inc/reg_tcram.h \
+ ../Athena/board/hercules_tms570LS12x/inc/pinmux.h \
+ ../Athena/board/hercules_tms570LS12x/inc/reg_pinmux.h \
+ ../Athena/board/hercules_tms570LS12x/inc/sys_vim.h \
+ ../Athena/board/hercules_tms570LS12x/inc/reg_vim.h \
+ ../Athena/board/hercules_tms570LS12x/inc/rti.h \
+ ../Athena/board/hercules_tms570LS12x/inc/reg_rti.h \
+ ../Athena/board/hercules_tms570LS12x/inc/sci.h \
+ ../Athena/board/hercules_tms570LS12x/inc/reg_sci.h \
+ ../Athena/board/hercules_tms570LS12x/inc/adc.h \
+ ../Athena/board/hercules_tms570LS12x/inc/reg_adc.h \
+ ../Athena/board/hercules_tms570LS12x/inc/het.h \
+ ../Athena/board/hercules_tms570LS12x/inc/reg_het.h \
+ ../Athena/board/hercules_tms570LS12x/inc/i2c.h \
+ ../Athena/board/hercules_tms570LS12x/inc/reg_i2c.h \
+ ../Athena/board/hercules_tms570LS12x/inc/mibspi.h \
+ ../Athena/board/hercules_tms570LS12x/inc/reg_mibspi.h \
+ ../Athena/board/hercules_tms570LS12x/inc/can.h \
+ ../Athena/board/hercules_tms570LS12x/inc/reg_can.h \
+ ../Athena/board/hercules_tms570LS12x/inc/gio.h
