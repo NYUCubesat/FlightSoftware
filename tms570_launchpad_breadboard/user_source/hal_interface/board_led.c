@@ -3,8 +3,8 @@
 void board_led_init(void)
 {
 	gioInit();
-	gioSetDirection(gioPORTB, 1);
-	gioSetDirection(gioPORTB, 2);
+	gioSetBit(gioPORTB, 1, 0);
+	gioSetBit(gioPORTB, 2, 0);
 }
 
 void board_led_on(led led_id)

@@ -7,11 +7,11 @@ ATHENA_PATH=../Athena
 # TOOLCHAIN_ROOT=$(ATHENA_PATH)/arm-none-eabi-gcc_5_4_BE/gcc-arm-none-eabi-5_4-2017q1_BE_LINUX
 TOOLCHAIN_ROOT=$(ATHENA_PATH)/arm-none-eabi-gcc_4_9_BE/gcc-arm-none-eabi-4_9-2017q2_BE_LINUX
 TOOLCHAIN=$(TOOLCHAIN_ROOT)/bin/
-JLINK_PATH=../../../JLink_Linux_V614c_x86_64
+JLINK_PATH=../../../JLink_Linux_V480_x86_64
 UNIFLASH_PATH=../../../Uniflash_TMS5701224
 PREFIX=$(TOOLCHAIN)/arm-none-eabi-
 
-ARCHFLAGS=-mcpu=cortex-r4f -mthumb -march=armv7-r -mbig-endian -mfloat-abi=hard -mfpu=vfpv3-d16 -I$(TOOLCHAIN_ROOT)/arm-none-eabi/include -fsingle-precision-constant 
+ARCHFLAGS=-mcpu=cortex-r4f -march=armv7-r -mbig-endian -mfloat-abi=hard -mfpu=vfpv3-d16 -I$(TOOLCHAIN_ROOT)/arm-none-eabi/include -fsingle-precision-constant 
 CFLAGS=-nostdlib -ffunction-sections -I$(ATHENA_PATH)/board/hercules_tms570LS12x/inc/ -I./user_include -I./user_include/hal_interface -g -O2 -Wall
 LDFLAGS= --specs=nosys.specs -Wl,--gc-sections,-Map,$(TARGET).map,-Tlinker.ld 
 LDFLAGS+=$(ARCHFLAGS)
@@ -22,7 +22,7 @@ OBJCOPY=$(PREFIX)objcopy
 SIZE=$(PREFIX)size
 RM=rm -f
 
-TARGET=tms570_launchpad_tester
+TARGET=tms570_launchpad_breadboard
 
 SRC=$(wildcard $(ATHENA_PATH)/board/hercules_tms570LS12x/src/*.c)
 ASM_SRC=$(wildcard $(ATHENA_PATH)/board/hercules_tms570LS12x/src/*.s)
